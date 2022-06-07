@@ -84,18 +84,6 @@ rescue StandardError => e
 end
 
 
-
-
-
-
-
-##* Ejercicio: Tamagotchi
-# Diseñar una mascota virtual que cuente con una vida, la capacidad de "vestir" accesorios como: gorras, lentes o collares, comer y ejercitarse. 
-# Para lograr diseñar el juego hay que recordar que la comida afecta directamente a la vida de la mascota, la fruta suma vida y el chocolate le resta, 
-# los valores de cada uno deben ser definidos al azar.
-# Los juguetes que puede cargar deberán tener un nombre y una descripción antes de asociarlo a una mascota
-# La función de ejercitarse que es propia de la mascota, debería sumarle a la vida +5 cada vez que sea llamada.
-
 ##* Ejercicio: Adopción de Mascotas
 # Una fundación de animales se encuentra en su edición XIX de adopción y se han dado cuenta que seguir haciéndola de forma manual
 # es un proceso muy desgastante. En este proceso se debe conocer a las mascotas que están adoptadas o no junto con sus datos básicos
