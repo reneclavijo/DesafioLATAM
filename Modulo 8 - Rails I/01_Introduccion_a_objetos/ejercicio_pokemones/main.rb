@@ -4,6 +4,7 @@ local = Pokemon.new
 visitante = Pokemon.new
 
 
+
 ataque = 0
 while visitante.vida > 0 && local.vida > 0
 
