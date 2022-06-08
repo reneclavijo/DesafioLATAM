@@ -83,12 +83,5 @@ rescue StandardError => e
   puts e.full_message
 end
 
-
-##* Ejercicio: Adopción de Mascotas
-# Una fundación de animales se encuentra en su edición XIX de adopción y se han dado cuenta que seguir haciéndola de forma manual
-# es un proceso muy desgastante. En este proceso se debe conocer a las mascotas que están adoptadas o no junto con sus datos básicos
-# como: nombre, raza, numero de vacunas y una observación opcional
-# Por el lado de las personas, antes de poder adoptar es necesario registrarlas con un nombre, identificación y teléfono, después de eso
-# recien podríamos realizar la acción de adoptar a la mascota. En la aplicación debe quedar relacionado la persona con la mascota
-# y una persona puede adoptar muchas mascotas, así que sería bueno que se pudiera imprimir todas las mascotas que la persona ha adoptado 
-# tanto en consola como en un archivo .csv
+# Lanzar excepciones 
+raise 'No hay mascotas' if true
