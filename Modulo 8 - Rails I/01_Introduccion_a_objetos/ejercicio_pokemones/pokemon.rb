@@ -14,7 +14,7 @@ class Pokemon
     puts "👾 #{@nombre} \t 🔋 #{@vida} \t ⚔️ #{@ataque1} \t ⚔️ #{@ataque2}"
   end
 
-  def recibir_daño(valor)
+  def recibir_ataque(valor)
     @vida -= valor
     if @vida < 0
       @vida = 0
@@ -24,9 +24,9 @@ class Pokemon
   def atacar(contrincante, ataque)
     case ataque
     when 1
-      contrincante.recibir_daño @ataque1
+      contrincante.recibir_ataque @ataque1
     when 2
-      contrincante.recibir_daño @ataque2
+      contrincante.recibir_ataque @ataque2
     end
   end
 
