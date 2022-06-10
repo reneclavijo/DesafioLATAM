@@ -5,9 +5,9 @@
 # 1. Agrupar constantes.
 # 2. Agrupar métodos.
 # 3. Agrupar clases.
-# 4. Evitar colisiones de nombre.
+# 4. Evitar colisiones de nombre. 
 
-module ModuloTiempo
+module ModuloTiempo # CamelCase
 
   HORAS_X_DIA = 24
 
@@ -23,11 +23,11 @@ module ModuloTiempo
 end
 
 puts ModuloTiempo::HORAS_X_DIA
-
 puts ModuloTiempo.convertir_horas_dias(48)
-
 hora_laboral = ModuloTiempo::HoraLaboral.new
 puts hora_laboral.valor_hora_trabajada
+
+
 
 
 # Extensión de clases
