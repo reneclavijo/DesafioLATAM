@@ -41,8 +41,8 @@ class Persona
 end
 
 ignacio = Persona.new
-ignacio.saludar
-ignacio.saludar
+ignacio.saludar("Emerson")
+ignacio.saludar("Emerson")
 
 
 
@@ -86,7 +86,7 @@ v1 = Vehiculo.new
 v1.encender
 v1.estado
 
-v2 = Vechiculo.new
+v2 = Vehiculo.new
 v2.apagar
 v2.estado
 
@@ -118,8 +118,8 @@ class Persona
 
 end
 
-m1 = Mascota.new("Shadow")
-m1.nombre
+# m1 = Mascota.new("Shadow")
+# m1.nombre
 # Accesores resumidos
 
 class Persona

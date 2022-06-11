@@ -1,18 +1,18 @@
 require_relative 'appointment'
 
 class MonthlyAppointment < Appointment
- attr_reader :day
-  def initialize(location, purpose, hour, min, day)        
-    super(location, purpose, hour, min)
-    @day      = day
+  attr_reader :day
+
+  def initialize(location, purpose, hour, min, day)
+    super(location, purpose, hour, min) # me quedo con la casa y los muebles y traigo mis cosas
+    @day = day
   end
 
   def occurs_on?(day)
-    @day == day # Devuelve un true o false si la cita ocurre el día
   end
 
-  def to_s
-    "Reunión mensual en #{@location} sobre #{@purpose} el día #{@day} a la(s) #{@hour}:#{@min}"
+  def to_s # Polimorfismo / Botar los muebles por la ventana
+    "Reunión mensual en #{@location} sobre #{@purpose}
+    el día #{@day} a la(s) #{@hour}:#{@min}."
   end
-
 end
