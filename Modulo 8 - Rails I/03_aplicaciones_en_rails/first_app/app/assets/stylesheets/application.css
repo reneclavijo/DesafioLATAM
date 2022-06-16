@@ -27,3 +27,7 @@ nav ul li a{
   text-decoration: none;
   color: black;
 }
+
+.card{
+  width: 50%;
+}
