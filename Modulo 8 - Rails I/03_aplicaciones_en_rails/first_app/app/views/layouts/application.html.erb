@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    
+    <nav>
+      <ul>
+        <li> <%= link_to "Primera vista", root_path %> </li>
+        <li> <%= link_to "Segunda vista", '/pages/two' %> </li>
+        <li> <%= link_to "Tercera vista", '/pages/three' %> </li>
+      </ul>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
