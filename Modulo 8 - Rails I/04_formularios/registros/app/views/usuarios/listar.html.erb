@@ -1,0 +1,18 @@
+<h1>Lista de usuarios registrados</h1>
+
+<div class="formulario">
+  <%= form_with(url:'/listar_usuarios', method: :get) do |f| %>
+    <%= f.text_field :busqueda %>
+    <%= f.submit "Buscar" %>
+  <% end %>
+</div>
+
+<% @lista_de_usuarios.each do |u| %>
+  <div class="tarjeta-usuario">
+    <p> <%= u.nombre %> </p>
+    <p> <%= u.apellido %> </p>
+    <p> <%= u.correo %> </p>
+    <p> <%= u.password %> </p>
+    <p> <%= u.color_favorito %> </p>
+  </div>
+<% end %>

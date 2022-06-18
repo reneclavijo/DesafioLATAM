@@ -1,0 +1,31 @@
+<h1>Usuarios#registro</h1>
+
+<% if flash[:error] %>
+  <span style="color:red;">
+    <%= flash[:error] %>
+  </span>
+<% end %>
+
+<%= form_with(url: 'crear_usuario') do |f| %>
+  <div>
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+  <div>
+    <%= f.label :apellido %>
+    <%= f.text_field :apellido %>
+  </div>
+  <div>
+    <%= f.label :correo %>
+    <%= f.email_field :correo %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :color_favorito %>
+    <%= f.color_field :color_favorito %>
+  </div>
+  <%= f.submit "Registrar" %>
+<% end %>
