@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  ediciones: MyString
+  lanzamiento: 2022-06-22 17:32:13
+
+two:
+  nombre: MyString
+  ediciones: MyString
+  lanzamiento: 2022-06-22 17:32:13

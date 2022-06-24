@@ -1,0 +1,17 @@
+<h1>Editar juego</h1>
+
+<%= form_with(model: @juego) do |f| %>
+    <div>
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre %>
+    </div>
+    <div>
+        <%= f.label :ediciones %>
+        <%= f.text_field :ediciones %>
+    </div>
+    <div>
+        <%= f.label :lanzamiento %>
+        <%= f.date_field :lanzamiento %>
+    </div>
+    <%= f.submit "Actualizar" %>
+<% end %>

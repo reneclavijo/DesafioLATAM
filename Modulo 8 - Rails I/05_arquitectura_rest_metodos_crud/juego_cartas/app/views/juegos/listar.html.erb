@@ -1,0 +1,17 @@
+<h1>Lista de juegos registrada</h1>
+
+<%= link_to "Nuevo juego", nuevo_juego_path %>
+
+<% @juegos.each do |j| %>
+    <div>
+        <div class="nombre">
+            <%= link_to j.nombre, juego_path(j) %>
+        </div>
+        <div class="ediciones">
+            <%= j.ediciones %>
+        </div>
+        <div class="lanzamiento">
+            <%= j.lanzamiento %>
+        </div>
+    </div>
+<% end %>

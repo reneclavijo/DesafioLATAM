@@ -1,0 +1,2 @@
+class Cartum < ApplicationRecord
+end

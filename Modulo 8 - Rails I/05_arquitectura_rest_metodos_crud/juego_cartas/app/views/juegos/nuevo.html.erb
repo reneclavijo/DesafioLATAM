@@ -1,0 +1,23 @@
+<h1>Nuevo juego</h1>
+
+<div class="w-10">
+    <%= image_tag 'metroid.jpg', class: 'img-fluid' %>
+</div>
+
+<div class="card w-10 p-5">
+    <%= form_with(model: @juego) do |f| %>
+        <div class="mb-3">
+            <%= f.label :nombre, class: 'form-label' %>
+            <%= f.text_field :nombre, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+            <%= f.label :ediciones, class: 'form-label' %>
+            <%= f.text_field :ediciones, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+            <%= f.label :lanzamiento, class: 'form-label' %>
+            <%= f.date_field :lanzamiento, class: 'form-control' %>
+        </div>
+        <%= f.submit "Crear", class: 'btn btn-primary' %>
+    <% end %>
+</div>

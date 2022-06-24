@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @cartum.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @cartum.descripcion %>
+</p>
+
+<%= link_to 'Edit', edit_cartum_path(@cartum) %> |
+<%= link_to 'Back', carta_path %>

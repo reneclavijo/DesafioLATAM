@@ -1,0 +1,15 @@
+
+<h1>Detalle de <%= @juego.nombre %> </h1>
+<h2> <%= @juego.ediciones %> </h2>
+<h3> <%= @juego.lanzamiento %> </h3>
+
+<%= link_to "Editar ✏", editar_juego_path(@juego) %>
+
+<!-- # rails 6.x | 5.x -->
+<%= link_to 'Eliminar ❌', juego_path(@juego), method: :delete, data: { confirm: '¿Estás seguro de eliminarlo?' } %>
+<!-- # rails 7.x -->
+<!-- <%= button_to 'Eliminar ❌', juego_path(@juego), method: :delete, data: { confirm: '¿borrar?' } %> -->
+
+<%= link_to "Lista de juegos", juegos_path %>
+
+
