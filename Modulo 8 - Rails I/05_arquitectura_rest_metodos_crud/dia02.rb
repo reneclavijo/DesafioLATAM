@@ -67,4 +67,24 @@ gem 'ransack'
 # 8. Modificar el controlador
 # Agregar a app/controllers/movies_controller.rb
 
+ # GET /movies or /movies.json
+ def index
+    @q = Movie.ransack(params[:q])
+    @movies = @q.result(distinct: true).page(params[:page])
+  end
 
+# 9. Agregar el formulario de búsqueda
+# Agregar a app/views/movies/index.html.erb
+
+  <%= search_form_for(@q) do |f| %>
+    <%= f.label         :title_cont %>
+    <%= f.search_field  :title_cont %>
+  
+    <%= f.label         :duration_lteq %>
+    <%= f.search_field  :duration_lteq %>
+  
+    <%= f.label         :category_eq %>
+    <%= f.search_field  :category_eq %>
+  
+    <%= f.submit %>
+  <% end %>
