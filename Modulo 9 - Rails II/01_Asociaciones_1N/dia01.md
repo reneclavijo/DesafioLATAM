@@ -31,6 +31,182 @@ Con *scaffold*
 rails g scaffold Movie title:string duration:integer category:references
 ```
 
+## Terminar el nuevo CRUD
+
+1. Ejecutar la migración
+
+    ` rails db:migrate`
+
+2. Agregar las asociaciones a los modelos
+
+    app/models/category.rb
+    ```ruby
+    class Category < ApplicationRecord
+        has_many :movies
+    end
+
+    ```
+
+    app/models/movie.rb
+    ```ruby
+    class Movie < ApplicationRecord
+        belongs_to :category
+    end
+    ```
+
+3. Inspeccionar la vista
+   
+   3.1. Modificar la vista de index y show (versiones que no sean **7**)
+
+    En el cuerpo de la tabla app/views/movies/index.html.erb
+   ```html
+    <tbody>
+        <% @movies.each do |movie| %>
+        <tr>
+            <td><%= movie.title %></td>
+            <td><%= movie.duration %></td>
+            <td><%= movie.category.name %></td>
+            <td><%= link_to 'Show', movie %></td>
+            <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+            <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    </tbody>  
+   ```
+
+   3.2. Modificar el formulario para quitar el text_field y agregar un select
+
+    app/views/movies/_form.html.erb
+    ```html
+        <%= form_with(model: movie) do |form| %>
+        <% if movie.errors.any? %>
+            <div id="error_explanation">
+            <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+            <ul>
+                <% movie.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+            <%= form.label :title %>
+            <%= form.text_field :title %>
+        </div>
+
+        <div class="field">
+            <%= form.label :duration %>
+            <%= form.number_field :duration %>
+        </div>
+
+        <div class="field">
+            <%= form.label :category_id %>
+            <%= form.select :category_id, 
+            options_from_collection_for_select(
+            @categorias, :id, :name
+            )
+            %>
+        </div>
+
+        <div class="actions">
+            <%= form.submit %>
+        </div>
+        <% end %>
+    ```
+
+    app/controllers/movies_controller.rb
+   ```ruby
+    # GET /movies/new
+    def new
+        @movie = Movie.new
+        @categorias = Category.all
+    end
+   ```
+
+4. Inspeccionar el controlador
+
+    ```ruby
+    class MoviesController < ApplicationController
+        before_action :set_movie, only: %i[ show edit update destroy ]
+
+        # GET /movies or /movies.json
+        def index
+            @movies = Movie.all
+        end
+
+        # GET /movies/1 or /movies/1.json
+        def show
+        end
+
+        # GET /movies/new
+        def new
+            @movie = Movie.new 
+            # Don't Repeat Yourself / DRY
+            asignar_categorias
+        end
+
+        # GET /movies/1/edit
+        def edit
+            asignar_categorias
+        end
+
+        # POST /movies or /movies.json
+        def create
+            @movie = Movie.new(movie_params)
+
+            respond_to do |format|
+            if @movie.save
+                format.html { redirect_to movie_url(@movie), notice: "Movie was successfully created." }
+                format.json { render :show, status: :created, location: @movie }
+            else
+                format.html { render :new, status: :unprocessable_entity }
+                format.json { render json: @movie.errors, status: :unprocessable_entity }
+            end
+            end
+        end
+
+        # PATCH/PUT /movies/1 or /movies/1.json
+        def update
+            respond_to do |format|
+            if @movie.update(movie_params)
+                format.html { redirect_to movie_url(@movie), notice: "Movie was successfully updated." }
+                format.json { render :show, status: :ok, location: @movie }
+            else
+                format.html { render :edit, status: :unprocessable_entity }
+                format.json { render json: @movie.errors, status: :unprocessable_entity }
+            end
+            end
+        end
+
+        # DELETE /movies/1 or /movies/1.json
+        def destroy
+            @movie.destroy
+
+            respond_to do |format|
+            format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
+            format.json { head :no_content }
+            end
+        end
+
+        private
+            # Use callbacks to share common setup or constraints between actions.
+            def set_movie
+            @movie = Movie.find(params[:id])
+            end
+
+            # Only allow a list of trusted parameters through.
+            def movie_params
+            params.require(:movie).permit(:title, :duration, :category_id)
+            end
+
+            def asignar_categorias
+            @categorias = Category.all
+            end
+        end
+    ```
+
 ## Rutas aniadadas
 
 Las rutas anidadas nos ayudan a orgainzar mejor los recursos que dependen de otros, por ejemplo en la página
@@ -69,13 +245,6 @@ Rails.application.routes.draw do
     end
 end
 ```
-
-## Terminar el nuevo CRUD
-
-**TODO: Revisar migraciones**
-**TODO: Finalizar modelos**
-**TODO: Finalizar modelos**
-**TODO: ¿Qué pasa con los controladores y vistas?**
 
 
 ## Borar en cascada
