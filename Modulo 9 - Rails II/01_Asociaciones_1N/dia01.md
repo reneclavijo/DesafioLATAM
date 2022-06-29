@@ -77,43 +77,43 @@ rails g scaffold Movie title:string duration:integer category:references
    3.2. Modificar el formulario para quitar el text_field y agregar un select
 
     app/views/movies/_form.html.erb
-    ```html
-        <%= form_with(model: movie) do |form| %>
-        <% if movie.errors.any? %>
-            <div id="error_explanation">
-            <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+    ```erb
+    <%= form_with(model: movie) do |form| %>
+    <% if movie.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
 
-            <ul>
-                <% movie.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-                <% end %>
-            </ul>
-            </div>
-        <% end %>
-
-        <div class="field">
-            <%= form.label :title %>
-            <%= form.text_field :title %>
+        <ul>
+            <% movie.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+            <% end %>
+        </ul>
         </div>
+    <% end %>
 
-        <div class="field">
-            <%= form.label :duration %>
-            <%= form.number_field :duration %>
-        </div>
+    <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
 
-        <div class="field">
-            <%= form.label :category_id %>
-            <%= form.select :category_id, 
-            options_from_collection_for_select(
-            @categorias, :id, :name
-            )
-            %>
-        </div>
+    <div class="field">
+        <%= form.label :duration %>
+        <%= form.number_field :duration %>
+    </div>
 
-        <div class="actions">
-            <%= form.submit %>
-        </div>
-        <% end %>
+    <div class="field">
+        <%= form.label :category_id %>
+        <%= form.select :category_id, 
+        options_from_collection_for_select(
+        @categorias, :id, :name
+        )
+        %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+    <% end %>
     ```
 
     app/controllers/movies_controller.rb
