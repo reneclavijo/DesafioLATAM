@@ -1,19 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
+<!-- Imagen -->
+<div>
+  <img src="<%= @movie.poster %>" >
+</div>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @movie.duration %>
-</p>
+<!-- Texto -->
+<div>
+  <p>
+    <strong>Title:</strong>
+    <%= @movie.title %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @movie.category.name %>
-</p>
+  <p>
+    <strong>Duration:</strong>
+    <%= @movie.duration %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @movie.category.name %>
+  </p>
+</div>
+
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
