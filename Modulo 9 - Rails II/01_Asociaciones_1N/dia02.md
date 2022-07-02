@@ -73,3 +73,28 @@ Para esto vamos a agregar en nuestro app/controllers/movies_controller.rb en el 
 ## Rutas anidadas
 
 5. Agregar una tabla nueva que almacenemos los comentarios / reviews de las películas
+
+Generar la nueva tabla Reviews que está relacionada con Movies
+
+En consola
+```bash
+rails g scaffold Review content:string movie:references
+rails db:migrate
+
+```
+
+Agregar la asociación entre los modelos de Movie y Review
+app/models/movie.rb
+```ruby
+class Movie < ApplicationRecord
+  belongs_to    :category # singular
+  has_many      :reviews
+end
+```
+
+config/routes.rb
+```ruby
+  resources :movies do
+    resources :reviews    
+  end
+```

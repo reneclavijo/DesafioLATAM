@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-    has_many :movies # plural
+    has_many :movies, dependent: :destroy # plural
 end

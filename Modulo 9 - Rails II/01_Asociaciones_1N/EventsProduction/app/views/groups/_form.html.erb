@@ -1,0 +1,37 @@
+<%= form_with(model: group) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memebers %>
+    <%= form.number_field :memebers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :debut %>
+    <%= form.date_select :debut %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category, [:hombres, :mujeres, :banda] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
