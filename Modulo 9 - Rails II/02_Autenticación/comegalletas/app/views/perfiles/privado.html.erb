@@ -1,0 +1,14 @@
+<h1>Perfil privado 🔐</h1>
+
+<div>
+    <%= link_to "Cerrar sesión", "cerrar_sesion", method: :delete, data: { confirm: '¿vamos a cerrar sesión?' } %>
+    <!-- <%= button_to "Cerrar sesión", "cerrar_sesion", method: :delete, form: { data: { turbo_confirm: '¿vamos a cerrar sesión'}} %> -->
+</div>
+
+<p>
+    Hola <%= @usuario.correo %> has sido hackeado :)
+</p>
+
+<p>
+    Mi dirección es: 🌍🌎🌏🗺
+</p>

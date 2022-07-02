@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'perfiles/publico'
+  get 'perfiles/privado'
   get 'frascos/ver'
   get 'frascos/asignar'
   get 'frascos/borrar'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post 'perfiles/iniciar_sesion', to: 'perfiles#iniciar_sesion'
+  delete 'perfiles/cerrar_sesion', to: 'perfiles#cerrar_sesion'
 end

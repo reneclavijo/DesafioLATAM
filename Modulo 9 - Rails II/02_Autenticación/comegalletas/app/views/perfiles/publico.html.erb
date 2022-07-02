@@ -1,0 +1,22 @@
+<h1>Perfil público</h1>
+
+<p>Texto no importante</p>
+
+<div style="color: red;">
+<%= flash[:error] %>
+</div>
+
+<%= form_with url:"iniciar_sesion" do |f| %>
+    
+    <div>
+        <%= f.label :correo %>
+        <%= f.email_field :correo %>
+    </div>
+    
+    <div>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+    </div>
+
+    <%= f.submit "Iniciar sesión" %>
+<% end %>
