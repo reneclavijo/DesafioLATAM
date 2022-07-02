@@ -223,9 +223,62 @@ Tip: El uso de enum es una buena práctica.
 5. En el index de Group se debe mostrar la cantidad total de personas que han asistido
 por concierto de cada grupo. (1 Punto)
 
+    Modificar la tabla del index de grupos para mostrar la cantidad de asistentes por concierto
+
+    ```html
+    <table>
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Memebers</th>
+        <th>Debut</th>
+        <th>Category</th>
+        <th>Total Concerts</th>
+        <th>Attendance per conert</th>
+        <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @groups.each do |group| %>
+        <tr>
+            <td><%= group.name %></td>
+            <td><%= group.memebers %></td>
+            <td><%= group.debut %></td>
+            <td><%= group.category %></td>
+            <td><%= group.concerts.count %></td>
+            <td>
+            <div>
+                <% group.concerts.each do |c| %>
+                <span> <%= c.date %> </span> |
+                <span> <%= c.attendance %> </span>
+            </div>
+            <% end %>
+            </td>
+            <td><%= link_to 'Show', group %></td>
+            <td><%= link_to 'Edit', edit_group_path(group) %></td>
+            <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+    ```
+
 6. Si se termina el contrato de algún grupo, entonces se debe eliminar el registro de los
 conciertos del mismo. (1 Punto)
 Tip: Acción Delete del CRUD
+
+    Asegurarse que *dependent: :destroy* esté en el modelo de Group
+
+   ```ruby
+   class Group < ApplicationRecord
+    # Rails 6
+    enum category: [:hombres, :mujeres, :banda]
+    # Rails 7
+    # enum :category, [:hombres, :mujeres, :banda]
+    has_many :concerts, dependent: :destroy
+   end
+   ```
 
 7. En la vista Show de Group debe poder mostrar una tabla con los siguientes datos:
 
@@ -233,7 +286,7 @@ Tip: Acción Delete del CRUD
         Tip: Investigar Clase Time
 
     ● Cuándo fue su último concierto con formato de fecha “Año - Mes en palabras-día en palabras”. (1 Punto)
-        Tip: Investigar .srtftime() [https://apidock.com/ruby/DateTime/strftime]
+        Tip: Investigar .strftime() [https://apidock.com/ruby/DateTime/strftime]
 
     ● Cuál es el número máximo de personas que ha ido a un concierto. (1 Punto)
         Tip: Recuerda evitar el error N+1 Querys

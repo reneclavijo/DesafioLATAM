@@ -20,5 +20,18 @@
   <%= @group.category %>
 </p>
 
+<table>
+  <thead>
+    <th>Último concierto</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @group.concerts.order(:date).first.date.strftime("%Y - %B - %A") %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

@@ -10,6 +10,7 @@
       <th>Debut</th>
       <th>Category</th>
       <th>Total Concerts</th>
+      <th>Attendance per conert</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,14 @@
         <td><%= group.debut %></td>
         <td><%= group.category %></td>
         <td><%= group.concerts.count %></td>
+        <td>
+          <div>
+            <% group.concerts.each do |c| %>
+            <span> <%= c.date %> </span> |
+            <span> <%= c.attendance %> </span>
+          </div>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
