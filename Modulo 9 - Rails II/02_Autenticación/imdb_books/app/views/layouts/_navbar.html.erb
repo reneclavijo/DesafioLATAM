@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <%= link_to "IMDB Books", root_path, class: 'navbar-brand' %>
+    <%# <a class="navbar-brand" href="#">Navbar</a> %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "libros", books_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+            <% if user_signed_in? %>              
+                <span class="nav-link disabled">
+                    <%= current_user.email %>
+                </span>
+            <% else %>
+                <%= link_to "Iniciar sesión", new_user_session_path, class: 'nav-link' %>
+            <% end %>
+        </li>
+
+        <% if user_signed_in? %>  
+            <li class="nav-item">
+                <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, data: { confirm: '¿seguro que quiere cerrar sesión?'}, class: 'nav-link' %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
