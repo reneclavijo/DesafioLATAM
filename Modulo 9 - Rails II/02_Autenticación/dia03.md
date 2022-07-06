@@ -37,15 +37,27 @@
     end
     ```
 
-- [ ] Generar las rutas necesarias para crear usuarios.
+- [x] Generar las rutas necesarias para crear usuarios.
+
+    ```ruby
+    Rails.application.routes.draw do
+        root 'stories#index'
+        resources :stories
+        resources :users, only: [:new, :create, :show]
+    end
+    ```
 
 **Se recomienda no usar la herramienta scaffolding y hacer los métodos y vistas manualmente.**
 
-- [ ] Revisar las rutas creadas y actualizar el link del navbar para que el perfil de usuari apunte al show de users.
+- [ ] Revisar las rutas creadas y actualizar el link del navbar para que el perfil de usuario apunte al show de users.
 
-- [ ] Crear controlador y formulario para un nuevo usuario. El formulario debe ser
-generado utilizando el helper form_with añadiendo el modelo y debe implementar las
-clases de bootstrap (revisar docs) (1 Punto).
+- [ ] Crear controlador y formulario para un nuevo usuario. El formulario debe ser generado utilizando el helper form_with añadiendo el modelo y debe implementar las clases de bootstrap (revisar docs) (1 Punto).
+
+    Generar un nuevo controlador para usuarios con la vista del formulario (new) y la vista del perfil (show)
+
+    `rails g controller users new show`
+
+
 
 - [ ] El formulario debe tener el campo para name, email y password y
 password_confirmation (0,5 Puntos).

@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.banner-registro {
+    max-height: 35vh;
+    overflow-y: hidden;
+}
