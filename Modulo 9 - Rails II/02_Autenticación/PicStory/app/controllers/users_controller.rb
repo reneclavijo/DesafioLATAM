@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  before_action :necesito_estar_autenticado!, only: :show
+
   # GET /users/new
   def new
     @user = User.new

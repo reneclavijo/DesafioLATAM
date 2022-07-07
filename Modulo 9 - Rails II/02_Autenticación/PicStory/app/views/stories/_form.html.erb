@@ -1,37 +1,26 @@
-<%= form_with(model: story) do |form| %>
-  <% if story.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
+<div class="row justify-content-center">
+  <div class="col-5">  
+    <%= form_with(model: story) do |form| %>
 
-      <ul>
-        <% story.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="mb-3">
+        <%= form.label :title, class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-control' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+      <div class="mb-3">
+        <%= form.label :picture, class: 'form-label' %>
+        <%= form.text_field :picture, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :content, class: 'form-label' %>
+        <%= form.text_area :content, class: 'form-control' %>
+      </div>
+      
+      
+      <%= form.submit "Publicar", class: 'btn btn-primary' %>
+      
+    <% end %>
+
   </div>
-
-  <div class="field">
-    <%= form.label :picture %>
-    <%= form.text_field :picture %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

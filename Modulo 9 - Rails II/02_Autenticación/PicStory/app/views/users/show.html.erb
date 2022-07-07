@@ -1,2 +1,24 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<table class="table table-striped">
+    <tr>
+        <td>Nombre</td>
+        <td><%= @usuario.name %></td>
+    </tr>
+    <tr>
+        <td>Correo</td>
+        <td><%= @usuario.email %></td>
+    </tr>
+</table>
+
+<% if @usuario.stories.count == 0 %>
+  <p>Aquí está medio vacío <i class="bi bi-search"></i></p>
+  <%= link_to "Crea tu primera historia", new_story_path, class: 'btn btn-primary text-white' %>
+<% else %>
+    <div class="row">
+        <% @usuario.stories.each do |s| %>
+            <div class="col-4">
+                <%= render "/stories/card_story", story: s %>
+            </div>
+        <% end %>
+    </div>
+<% end %>

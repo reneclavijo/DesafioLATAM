@@ -1,24 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @story.title %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-  <%= @story.picture %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @story.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @story.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+    <p id="notice"><%= notice %></p>
+    <%= render "card_story", story: @story %>
+  </div>
+</div>

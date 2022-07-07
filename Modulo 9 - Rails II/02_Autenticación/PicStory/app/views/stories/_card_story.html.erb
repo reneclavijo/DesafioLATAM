@@ -1,0 +1,13 @@
+<div class="card" style="width: 80%;">
+  <img src="<%= story.picture %>" class="card-img-top" alt="picture">
+  <div class="card-body">
+    <h4 class="card-title"><%= story.title %></h4>
+    <p class="card-text">
+        <%= story.content %>
+    </p>
+    <p class="text-secondary">
+      <i class="bi bi-person-check-fill"></i>
+      <%= story.user.name %>
+    </p>
+  </div>
+</div>

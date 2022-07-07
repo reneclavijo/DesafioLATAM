@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[ show edit update destroy ]
+  before_action :necesito_estar_autenticado!, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /stories or /stories.json
   def index
@@ -12,7 +13,8 @@ class StoriesController < ApplicationController
 
   # GET /stories/new
   def new
-    @story = Story.new
+    # generamos una historia relacionada al usuario con la sesión activa
+    @story = @usuario.stories.build
   end
 
   # GET /stories/1/edit
@@ -21,7 +23,7 @@ class StoriesController < ApplicationController
 
   # POST /stories or /stories.json
   def create
-    @story = Story.new(story_params)
+    @story = @usuario.stories.build(story_params)
 
     respond_to do |format|
       if @story.save

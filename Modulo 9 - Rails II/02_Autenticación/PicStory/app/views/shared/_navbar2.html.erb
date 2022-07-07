@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-white">
+  <div class="container">
+    <a class="navbar-brand fs-2" href="<%= root_path %>">
+      <span class="titulo">
+        📷PicStory
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">  
+        <% if logged? %>
+          <li class="nav-item mx-2">
+              <%= link_to stories_path, class: 'nav-link' do %>
+                <i class="bi bi-card-list"></i>
+                Todas las historias
+              <% end %>
+          </li>
+          <li class="nav-item mx-2">
+              <%= link_to new_story_path, class: 'nav-link' do %>
+                <i class="bi bi-plus-circle-fill"></i>
+                Publicar historia
+              <% end %>
+          </li>
+          <li class="nav-item mx-2">
+              <%= link_to user_path(current_user), class: 'nav-link' do %>
+              <i class="bi bi-person-circle"></i>
+                Ver mi perfil
+              <% end %>
+          </li>
+          <li class="nav-item mx-2">
+              <%= link_to session_path(current_user), class: 'nav-link',
+              method: :delete, data: { confirm: '¿Quiere cerrar la sesión?' } do
+              %>
+              <i class="bi bi-box-arrow-right"></i>
+              Cerrar sesión
+              <% end %>
+          </li>
+        <% else %>
+          <!-- CUANDO NO TENEMOS SESIÓN -->
+          <li class="nav-item mx-2">
+              <%= link_to "Sign up", new_user_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item mx-2">
+              <%= link_to "Sign in", new_session_path, class: 'nav-link' %>                      
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

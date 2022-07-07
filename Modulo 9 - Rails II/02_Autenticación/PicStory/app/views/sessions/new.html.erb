@@ -1,0 +1,22 @@
+<h1>Bienvenido</h1>
+
+<h3>Es hora de iniciar sesión</h3>
+
+<% if flash[:session_error] %>
+    <div class="alert alert-danger">
+        <%= flash[:session_error] %>
+    </div>
+<% end %>
+
+<%= form_with(url: '/sessions') do |f| %>
+    <div class="mb-3">
+        <%= f.label         :email, class: 'form-label' %>
+        <%= f.email_field   :email, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+        <%= f.label             :password, class: 'form-label' %>
+        <%= f.password_field    :password, class: 'form-control' %>
+    </div>
+
+    <%= f.submit "Ingresar", class: 'btn btn-primary' %>
+<% end %>
