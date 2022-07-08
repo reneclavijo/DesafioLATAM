@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2022-07-07
+  table: 1
+  client: one
+  restaurant: one
+
+two:
+  date: 2022-07-07
+  table: 1
+  client: two
+  restaurant: two
