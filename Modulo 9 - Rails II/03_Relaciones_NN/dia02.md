@@ -56,4 +56,19 @@ Para escribir una buena prueba debemos tomar en cuenta que tenemos las 3A
 
 Las cuáles nos ayudarán a acomodar las pruebas que tengamos en mente.
 
+## Problema
 
+### Enunciado
+
+Se desea implementar una aplicación que permita registrar precios de productos de diferentes supermercados por diferentes usuarios para así obtener un promedio del precio del mismo producto y evitar que los clientes paguen sobre precios por el mismo producto
+
+### Historia de usuario
+
+| Registrar un producto |
+|---|
+| Yo como usuario quiero publicar un producto que no esté registrado en el sistema para que entre la comunidad de la aplicación agreguemos los diferentes precios |
+| **Criterios de Aceptación** |
+| - El producto debe tener un nombre y marca |
+| - No debería poder existir muchos productos con los mismos nombres |
+| - No debería poder existir muchos productos con los mismos nombres |
+| - El  proudcto no debería tener un nombre que solamente sea 1 o 2 letras |
