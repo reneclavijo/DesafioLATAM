@@ -1,0 +1,45 @@
+<%= form_with(model: vino) do |form| %>
+  <% if vino.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vino.errors.count, "error") %> prohibited this vino from being saved:</h2>
+
+      <ul>
+        <% vino.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <% if vino.ensamblajes.count != 0 %>
+    <div>
+      <%= form.fields_for :ensamblajes do |f_ensamblajes| %>
+        <%= f_ensamblajes.label vino.ensamblajes[@pos].cepa.nombre %>
+        <%= f_ensamblajes.label :porcentaje %>
+        <%= f_ensamblajes.number_field :porcentaje %>
+        <% @pos += 1 %>
+      <% end %>
+    </div>
+  <% else %>
+    <% @cepas.each do |cepa| %>
+      <div>
+        <%= form.fields_for :ensamblajes do |f_ensamblajes| %>
+          <%= f_ensamblajes.label :cepa_id, cepa.nombre %>
+          <%= f_ensamblajes.hidden_field :cepa_id, value: cepa.id %>
+
+          <%= f_ensamblajes.label :porcentaje %>
+          <%= f_ensamblajes.number_field :porcentaje, value: 0 %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

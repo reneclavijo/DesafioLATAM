@@ -1,0 +1,22 @@
+<%= form_with(model: emerson) do |form| %>
+  <% if emerson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(emerson.errors.count, "error") %> prohibited this emerson from being saved:</h2>
+
+      <ul>
+        <% emerson.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

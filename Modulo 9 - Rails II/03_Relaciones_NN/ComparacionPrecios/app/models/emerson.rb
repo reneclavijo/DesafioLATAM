@@ -1,0 +1,2 @@
+class Emerson < ApplicationRecord
+end

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @vino.nombre %>
+</p>
+
+<% @vino.ensamblajes.each do |e| %>
+  <div>
+    <%= e.cepa.nombre %>
+    <%= e.porcentaje %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_vino_path(@vino) %> |
+<%= link_to 'Back', vinos_path %>
