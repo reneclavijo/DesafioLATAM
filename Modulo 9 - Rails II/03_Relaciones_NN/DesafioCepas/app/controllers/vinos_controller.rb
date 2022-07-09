@@ -20,6 +20,10 @@ class VinosController < ApplicationController
   # GET /vinos/1/edit
   def edit
     @pos = 0
+    if @vino.ensamblajes.count == 0
+      @cepas = Cepa.all
+      @vino.ensamblajes.build
+    end
   end
 
   # POST /vinos or /vinos.json
