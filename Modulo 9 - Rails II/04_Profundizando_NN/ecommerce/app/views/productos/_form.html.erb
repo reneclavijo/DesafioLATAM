@@ -1,0 +1,50 @@
+<%= form_with(model: producto) do |form| %>
+  <% if producto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(producto.errors.count, "error") %> prohibited this producto from being saved:</h2>
+
+      <ul>
+        <% producto.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stock %>
+    <%= form.number_field :stock %>
+  </div>
+
+  <div class="field">
+    <%= form.label :precio %>
+    <%= form.text_field :precio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sku %>
+    <%= form.text_field :sku %>
+  </div>
+
+  <div class="field">
+    <%= form.label :categorias %>
+    <%= form.collection_check_boxes :categoria_ids, Categoria.all,
+    :id, :nombre do |b| %>
+      <%= b.check_box + b.text %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
