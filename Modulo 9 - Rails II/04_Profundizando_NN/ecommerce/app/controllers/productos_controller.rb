@@ -1,5 +1,5 @@
 class ProductosController < ApplicationController
-  before_action :authenticate_admin! #singular
+  before_action :authenticate_administrador! #singular
   before_action :set_producto, only: %i[ show edit update destroy ]
 
   # GET /productos or /productos.json

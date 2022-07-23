@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nombre: MyString
-  descripcion: MyText
+p1:
+  nombre: pie de limon
+  descripcion: descrion1
   stock: 1
   precio: 9.99
-  sku: MyString
+  sku: LO0003
 
 two:
   nombre: MyString

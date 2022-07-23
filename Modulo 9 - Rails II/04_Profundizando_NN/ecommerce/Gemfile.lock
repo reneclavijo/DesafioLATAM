@@ -42,6 +42,11 @@ GEM
     activejob (6.1.6)
       activesupport (= 6.1.6)
       globalid (>= 0.3.6)
+    activemerchant (1.126.0)
+      activesupport (>= 4.2)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
     activemodel (6.1.6)
       activesupport (= 6.1.6)
     activerecord (6.1.6)
@@ -85,6 +90,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     ffi (1.15.5)
     globalid (1.0.0)
@@ -94,6 +103,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.6.2)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -184,6 +194,8 @@ GEM
     sqlite3 (1.4.4)
     thor (1.2.1)
     tilt (2.0.10)
+    transbank-sdk (2.0.1)
+      json (~> 2.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -216,10 +228,12 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activemerchant
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   devise
+  dotenv-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
@@ -229,6 +243,7 @@ DEPENDENCIES
   selenium-webdriver (>= 4.0.0.rc1)
   spring
   sqlite3 (~> 1.4)
+  transbank-sdk
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

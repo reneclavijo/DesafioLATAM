@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario: one
+  numero: MyString
+  total: 9.99
+  estado: MyString
+
+two:
+  usuario: two
+  numero: MyString
+  total: 9.99
+  estado: MyString

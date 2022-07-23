@@ -1,0 +1,38 @@
+<!-- app/views/home/index.html.erb -->
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="container">
+            <div class="row">
+                <% @productos.each do |producto| %>
+                    <div class="col-md-3 mb-3">
+                        <div class="card pb-3">
+                            <img class="card-img-top" src="https://dummyimage.com/600x400/c7c7c7/737373&text=image" alt="<%=producto.nombre%>" />
+                            <div class="card-block">
+                                <h5 class="card-title">
+                                    <%= producto.nombre %>
+                                </h5>
+                                <div class="card-text">
+                                    <div class="badge badge-primary text-black">
+                                        <%= producto.categorias.first.nombre %>
+                                    </div>
+                                    <div>$<%= producto.precio %>
+                                    </div>
+                                </div>
+                                <div class="row float-right">
+                                    <div class="col-md-12">
+                                        <%= form_for :carro, url: carro_path(0), method: :put do |f| %>
+                                            <%= f.hidden_field :producto_id, value: producto.id %>
+                                            <%= f.hidden_field :cantidad, value: 1 %>
+                                            <%= f.submit 'Agregar al carrito 🛒', class: 'btn btn-primary btn-sm' %>
+                                        <% end %>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

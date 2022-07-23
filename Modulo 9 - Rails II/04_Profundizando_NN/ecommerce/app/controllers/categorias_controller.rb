@@ -1,5 +1,5 @@
 class CategoriasController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_administrador!
   before_action :set_categoria, only: %i[ show edit update destroy ]
 
   # GET /categorias or /categorias.json

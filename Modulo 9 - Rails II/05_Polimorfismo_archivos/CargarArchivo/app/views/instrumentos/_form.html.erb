@@ -1,0 +1,27 @@
+<%= form_with(model: instrumento) do |form| %>
+  <% if instrumento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(instrumento.errors.count, "error") %> prohibited this instrumento from being saved:</h2>
+
+      <ul>
+        <% instrumento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label      :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label      :foto %>
+    <%= form.file_field :foto %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -56,3 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+# gem 'ffi' # windows
+gem 'activemerchant' # gestión de pagos
+gem 'dotenv-rails', groups: [:development, :test] # gestión de variables / credenciales
+
+gem 'transbank-sdk'

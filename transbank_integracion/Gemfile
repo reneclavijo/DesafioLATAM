@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem 'transbank-sdk', git: "https://github.com/TransbankDevelopers/transbank-sdk-ruby.git", branch: 'master'
+gem 'json'

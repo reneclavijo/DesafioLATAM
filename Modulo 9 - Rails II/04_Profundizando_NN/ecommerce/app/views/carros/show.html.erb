@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="card-header bg-dark text-light">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <a href="<%= root_url%>" class="btn btn-outline-info btn-sm pull-right">Continuar comprando</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body">
+        <% @orden.detalles_ordenes.includes(:producto).each do |item| %>
+            <div class="row">
+                <div class="col-xs-2 col-md-2">
+                    <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew">
+                </div>
+                <div class="col-xs-4 col-md-6">
+                    <h4 class="product-name"><strong>
+                            <%= item.producto.nombre %>
+                        </strong></h4>
+                    <h4><small>
+                            <%= item.producto.descripcion %>
+                        </small></h4>
+                </div>
+                <div class="col-xs-6 col-md-4 row">
+                    <div class="col-xs-6 col-md-6 text-right" style="padding-top: 5px">
+                        <h6><strong>
+                                <%= item.precio %> <span class="text-muted">x</span>
+                            </strong></h6>
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                        <%= item.cantidad %>
+                    </div>
+                    <div class="col-xs-2 col-md-2">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <% end %>
+    </div>
+    <div class="card-footer">
+        <%= form_for :carro, url: pagar_con_paypal_carro_path(0) do |f| %>
+            <%= f.hidden_field :orden_id, value: @orden.id %>
+            <%= f.submit 'Pagar con PAYPAL', class: 'btn btn-primary btn-sm' %>
+        <% end %>
+
+        <%= form_with(url: @resp["url"]) do |f|  %>
+            <%= f.hidden_field :token_ws, value: @resp["token"] %>
+            <%= f.submit "PAGAR CON TRANSBANK" %>
+        <% end %>
+
+
+        <div class="pull-right" style="margin: 5px">
+            Total: $<b>
+            <%= @orden.total %>
+            </b>
+        </div>
+    </div>
+</div>

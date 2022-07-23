@@ -1,0 +1,22 @@
+GIT
+  remote: https://github.com/TransbankDevelopers/transbank-sdk-ruby.git
+  revision: e73c7b1933fff913a4a4cca42b55b775e1e84b18
+  branch: master
+  specs:
+    transbank-sdk (2.0.1)
+      json (~> 2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    json (2.6.2)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  json
+  transbank-sdk!
+
+BUNDLED WITH
+   2.3.16

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<% if @banda.logo.attached? %>
+  <%= image_tag @banda.logo %>  
+<% end %>
+
+<% if @banda.fotos.attached? %>
+  <% @banda.fotos.each do |foto| %>
+    <%= image_tag foto %>  
+  <% end %>
+<% end %>
+
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @banda.nombre %>
+</p>
+
+<%= link_to 'Edit', edit_banda_path(@banda) %> |
+<%= link_to 'Back', bandas_path %>

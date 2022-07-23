@@ -1,3 +1,4 @@
+
 c1 = Categoria.find_by(nombre: 'Pasteles')
 c2 = Categoria.find_by(nombre: 'Galletas')
 c3 = Categoria.find_by(nombre: 'Gelatina')
