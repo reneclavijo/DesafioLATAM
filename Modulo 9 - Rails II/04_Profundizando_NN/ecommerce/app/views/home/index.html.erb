@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="row float-right">
                                     <div class="col-md-12">
-                                        <%= form_for :carro, url: carro_path(0), method: :put do |f| %>
+                                        <%= form_for :carro, url: carros_path, method: :put do |f| %>
                                             <%= f.hidden_field :producto_id, value: producto.id %>
                                             <%= f.hidden_field :cantidad, value: 1 %>
                                             <%= f.submit 'Agregar al carrito 🛒', class: 'btn btn-primary btn-sm' %>

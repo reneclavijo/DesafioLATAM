@@ -35,14 +35,18 @@
             <% end %>
     </div>
     <div class="card-footer">
-        <%= form_for :carro, url: pagar_con_paypal_carro_path(0) do |f| %>
-            <%= f.hidden_field :orden_id, value: @orden.id %>
-            <%= f.submit 'Pagar con PAYPAL', class: 'btn btn-primary btn-sm' %>
-        <% end %>
+        <% if @mostrar_pagos %>          
+            <%= form_for :carro, url: pagar_con_paypal_carros_path do |f| %>
+                <%= f.hidden_field :orden_id, value: @orden.id %>
+                <%= f.submit 'Pagar con PAYPAL', class: 'btn btn-primary btn-sm' %>
+            <% end %>
 
-        <%= form_with(url: @resp["url"]) do |f|  %>
-            <%= f.hidden_field :token_ws, value: @resp["token"] %>
-            <%= f.submit "PAGAR CON TRANSBANK" %>
+            <%= form_with(url: @resp["url"]) do |f|  %>
+                <%= f.hidden_field :token_ws, value: @resp["token"] %>
+                <%= f.submit "PAGAR CON TRANSBANK" %>
+            <% end %>        
+        <% else %>
+            <h3>Ve a traer más productos :/</h3>
         <% end %>
 
 

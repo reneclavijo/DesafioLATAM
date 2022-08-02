@@ -1,6 +1,7 @@
 class Orden < ApplicationRecord
   before_create -> { generar_numero(tam_hash) } # solamente se va a ejecutar la primera que se guarde una orden
-                                                
+  before_create :asignar_monto_inicial
+
   belongs_to :usuario
   has_many :detalles_ordenes
   has_many :productos, through: :detalles_ordenes
@@ -8,6 +9,10 @@ class Orden < ApplicationRecord
   has_many :metodos_pago, through: :pagos
   
   validates :numero, uniqueness: true
+
+  def asignar_monto_inicial
+    self.total = 0
+  end
 
   def generar_numero(tam_hash)
     self.numero ||= loop do
@@ -36,6 +41,13 @@ class Orden < ApplicationRecord
         cantidad: cantidad, 
         precio: producto.precio
       )
+      calcular_total
     end
+  end
+
+  def calcular_total
+    precios = self.detalles_ordenes.map{ |p| p.cantidad * p.precio}
+    self.total = precios.sum
+    save
   end
 end

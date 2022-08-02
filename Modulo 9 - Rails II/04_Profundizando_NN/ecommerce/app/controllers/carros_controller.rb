@@ -1,5 +1,6 @@
 class CarrosController < ApplicationController
     before_action :authenticate_usuario!
+
     def update
         producto = params[:carro][:producto_id]
         cantidad = params[:carro][:cantidad]
@@ -8,49 +9,21 @@ class CarrosController < ApplicationController
 
         redirect_to root_url, notice: 'Producto agregado 🤑'
     end
+
     def show
         @orden = orden_actual
-        # TRANSBANK TEMP
-        @codigo_orden_compra = "PASTELERIA-COMPRA-001"
-        @sesion_id = "00001" # identificador de la sesión de pago de uso interno del comerio
-        @monto = 50000
-        #@url_pagina_retorno = "http://localhost:3000/resumenes"
-        @url_pagina_retorno = procesar_pago_paypal_carro_url
-    
-        @tx = Transbank::Webpay::WebpayPlus::Transaction.new(::Transbank::Common::IntegrationCommerceCodes::WEBPAY_PLUS)
-        @resp = @tx.create(@codigo_orden_compra, @sesion_id, @monto, @url_pagina_retorno)
-    
+        @mostrar_pagos = @orden.total != 0
+        if @mostrar_pagos
+            servicio_transbank = ServicioPagoTransbank.new(@orden, transaccion_efectiva_transbank_carros_url)
+            @resp = servicio_transbank.pagar
+        end
     end
 
     # POST
     def pagar_con_paypal
         orden = Orden.find(params[:carro][:orden_id])
-        #price must be in cents
-        price = 100
-        # Aqui llamamos al express gateway que definimos al inicializar
-        # que definimos en nuestro archivo config/development.rb y
-        # preparamos la compra, donde se nos devolverá un token para
-        # identificar esta venta en particular
-        response = EXPRESS_GATEWAY.setup_purchase(price,
-            ip: request.remote_ip,
-            return_url: procesar_pago_paypal_carro_url,
-            cancel_return_url: root_url,
-            allow_guest_checkout: true,
-            currency: "USD"
-        )
-        payment_method = MetodoPago.find_by(codigo: "PEC")
-        # Aquí creamos nuestro registro en la tabla Payment con el
-        # payment method de Paypal, y con estado “processing” pues aún
-        # está en proceso
-        Pago.create(
-            orden_id: orden.id,
-            metodo_pago_id: payment_method.id,
-            estado: "processing",
-            total: orden.total,
-            token: response.token
-        )
-        # redirigimos al usuario a Paypal, para que realice el pago
-        redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+        servicio_paypal = ServicioPagoPaypal.new(orden, procesar_pago_paypal_carros_url, root_path)
+        redirect_to servicio_paypal.pagar(request.remote_ip)
     end
     
     # GET
@@ -76,5 +49,17 @@ class CarrosController < ApplicationController
         #         payment.save!
         #     end
         # end
+    end
+
+    # GET de Transbank    
+    def transaccion_efectiva_transbank
+        servicio_transbank = ServicioPagoTransbank.new
+        @respuesta = servicio_transbank.confirmar(params[:token_ws])
+        if @respuesta
+            @mensaje = "FELICIDADES"
+            orden_actual.update(estado: "completado")
+        else
+            @mensaje = "HUBO UN ERROR :("
+        end
     end
 end
