@@ -1,5 +1,6 @@
 class CarrosController < ApplicationController
-    before_action :authenticate_usuario!
+    skip_before_action :verify_authenticity_token
+    before_action :authenticate_usuario!, except: :transaccion_efectiva_transbank
 
     def update
         producto = params[:carro][:producto_id]
@@ -55,11 +56,21 @@ class CarrosController < ApplicationController
     def transaccion_efectiva_transbank
         servicio_transbank = ServicioPagoTransbank.new
         @respuesta = servicio_transbank.confirmar(params[:token_ws])
-        if @respuesta
+        if @respuesta && @respuesta["status"].eql?("AUTHORIZED")
             @mensaje = "FELICIDADES"
+            pago = Pago.find_by(token: params[:token_ws])
+            pago.update(estado: "completado")
             orden_actual.update(estado: "completado")
         else
-            @mensaje = "HUBO UN ERROR :("
+            # {"TBK_TOKEN"=>"[FILTERED]", "TBK_ORDEN_COMPRA"=>"PASTELERIA-COMPRA-9", "TBK_ID_SESION"=>"1403"}
+            if params[:TBK_TOKEN] # CUANDO LA TRANSACCIÓN SE CANCELA
+                @estado = servicio_transbank.consultar_estado(params[:TBK_TOKEN])
+            else # CUANDO LA TARJETA DA ERROR
+                @estado = servicio_transbank.consultar_estado(params[:token_ws])
+            end
+            pago = Pago.find_by(token: params["TBK_TOKEN"])
+            pago.update(estado: "cancelado")
+            @mensaje = "HUBO UN ERROR :( #{@estado.inspect}"
         end
     end
 end
